@@ -1,0 +1,39 @@
+/* ============================================================
+   CityBite design tokens
+   Colors are taken straight from the supplied mockups (v4)
+   ============================================================ */
+:root {
+  --orange: #e2632f;        /* main brand colour (buttons, active tab) */
+  --orange-dark: #c9501f;   /* hover / pressed */
+  --orange-soft: #fbe3d6;   /* light orange circles & badges */
+  --orange-tint: #fff8f3;   /* sponsored cards */
+  --cream: #fdfbf6;         /* page background */
+  --cream-2: #f5efe6;       /* segmented controls, inputs hover */
+  --white: #ffffff;
+  --ink: #221d17;           /* main text + dark chips */
+  --muted: #7d7469;         /* secondary text */
+  --line: #ebe2d1;          /* card borders */
+  --green: #3d7a57;         /* verified / available / success */
+  --green-soft: #e8efea;
+  --gold: #8a6410;          /* "sponsored" label */
+  --gold-soft: #fbecc9;
+  --red: #c0392b;
+  --star: #e2632f;
+
+  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-head: 'Playfair Display', 'Source Serif 4', Georgia, 'Times New Roman', serif;
+
+  --r-sm: 10px;
+  --r-md: 14px;
+  --r-lg: 20px;
+  --r-xl: 28px;
+  --r-pill: 999px;
+
+  --shadow-sm: 0 1px 2px rgba(34, 29, 23, 0.06);
+  --shadow-md: 0 8px 24px rgba(34, 29, 23, 0.08);
+  --shadow-lg: 0 18px 48px rgba(34, 29, 23, 0.16);
+
+  --nav-h: 64px;            /* bottom tab bar height (mobile) */
+  --top-h: 72px;            /* top navbar height (desktop) */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}

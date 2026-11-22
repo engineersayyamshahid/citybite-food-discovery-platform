@@ -1,0 +1,21 @@
+# Build output
+bin/
+obj/
+*.Backup.tmp
+
+# Visual Studio / Rider / VS Code user files
+.vs/
+.idea/
+.vscode/
+*.user
+*.suo
+
+# Uploaded photos are local test data — each laptop has its own.
+# Demo photos are kept so the demo data works for everyone.
+CityBite.Api/wwwroot/uploads/*
+!CityBite.Api/wwwroot/uploads/demo/
+!CityBite.Api/wwwroot/uploads/.gitkeep
+
+# OS files
+Thumbs.db
+.DS_Store

@@ -1,0 +1,154 @@
+### CityBite API quick tests (Visual Studio: click "Send request" above each block)
+@host = http://localhost:5000
+
+### Health
+GET {{host}}/api/health
+
+### Areas
+GET {{host}}/api/areas
+
+### Customer signup (response has devOtp in offline mode)
+POST {{host}}/api/auth/signup/customer
+Content-Type: application/json
+
+{
+  "fullName": "Sana Tariq",
+  "emailOrPhone": "03001234567",
+  "password": "secret123"
+}
+
+### Verify OTP (put the devOtp from signup here)
+POST {{host}}/api/auth/verify-otp
+Content-Type: application/json
+
+{
+  "emailOrPhone": "03001234567",
+  "code": "0000"
+}
+
+### Login (role: customer or restaurant_owner)
+POST {{host}}/api/auth/login
+Content-Type: application/json
+
+{
+  "emailOrPhone": "03001234567",
+  "password": "secret123",
+  "role": "customer"
+}
+
+### Who am I (paste the token from login)
+GET {{host}}/api/auth/me
+Authorization: Bearer PASTE_TOKEN_HERE
+
+### Restaurant signup
+POST {{host}}/api/auth/signup/restaurant
+Content-Type: application/json
+
+{
+  "restaurantName": "Tabaq Kitchen",
+  "areaId": 3,
+  "address": "Shop 4, Cantt Road",
+  "emailOrPhone": "03007654321",
+  "password": "secret123"
+}
+
+### ---------- Browse (no login needed) ----------
+
+### Home (add "Authorization: Bearer ..." to get your own chips and area)
+GET {{host}}/api/home
+
+### Cuisines with food types
+GET {{host}}/api/cuisines
+
+### Search dishes
+GET {{host}}/api/dishes?q=pizza&sort=top_rated
+
+### Filter dishes (Desi + BBQ, Rs 500-1000, 4.0+)
+GET {{host}}/api/dishes?cuisineIds=1&cuisineIds=2&minPrice=500&maxPrice=1000&minRating=4
+
+### Restaurants (Explore)
+GET {{host}}/api/restaurants?sort=top_rated
+
+### Restaurant page
+GET {{host}}/api/restaurants/1
+
+### Dish page
+GET {{host}}/api/dishes/1
+
+### Dish reviews
+GET {{host}}/api/dishes/1/reviews?page=1&pageSize=10
+
+### ---------- Restaurant: bills (log in as Tabaq Kitchen 03007654321 / secret123, role restaurant_owner) ----------
+
+### Menu for the Generate bill screen
+GET {{host}}/api/my-restaurant/bill-menu
+Authorization: Bearer PASTE_OWNER_TOKEN
+
+### Generate bill (prices come from the database)
+POST {{host}}/api/my-restaurant/bills
+Authorization: Bearer PASTE_OWNER_TOKEN
+Content-Type: application/json
+
+{
+  "tableNo": 3,
+  "items": [
+    { "dishId": 1, "sizeId": 2, "qty": 2 },
+    { "dishId": 4, "qty": 3 }
+  ]
+}
+
+### Bill history
+GET {{host}}/api/my-restaurant/bills
+Authorization: Bearer PASTE_OWNER_TOKEN
+
+### ---------- Customer: reviews (log in as Sana 03001234567 / secret123, role customer) ----------
+
+### Enter bill code
+POST {{host}}/api/reviews/redeem
+Authorization: Bearer PASTE_CUSTOMER_TOKEN
+Content-Type: application/json
+
+{ "code": "K7M4QX" }
+
+### Rate dishes (billItemId values come from the redeem response)
+POST {{host}}/api/reviews
+Authorization: Bearer PASTE_CUSTOMER_TOKEN
+Content-Type: application/json
+
+{
+  "billId": 193,
+  "ratings": [
+    { "billItemId": 1, "rating": 5, "comment": "Best karahi in town!" }
+  ]
+}
+
+### My reviews (Reviews tab)
+GET {{host}}/api/me/reviews
+Authorization: Bearer PASTE_CUSTOMER_TOKEN
+
+### ---------- Promotions (restaurant owner) ----------
+
+### Packages with 7 / 14 / 30 day prices
+GET {{host}}/api/promotion-packages
+
+### Start a promotion (durationDays: 7, 14 or 30)
+POST {{host}}/api/my-restaurant/promotions
+Authorization: Bearer PASTE_OWNER_TOKEN
+Content-Type: application/json
+
+{ "packageId": 1, "durationDays": 7 }
+
+### My promotions with views / taps / saves
+GET {{host}}/api/my-restaurant/promotions
+Authorization: Bearer PASTE_OWNER_TOKEN
+
+### Extend (adds days after the current run)
+POST {{host}}/api/my-restaurant/promotions/1/extend
+Authorization: Bearer PASTE_OWNER_TOKEN
+Content-Type: application/json
+
+{ "durationDays": 7 }
+
+### Stop
+POST {{host}}/api/my-restaurant/promotions/1/stop
+Authorization: Bearer PASTE_OWNER_TOKEN
