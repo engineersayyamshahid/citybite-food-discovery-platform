@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🍴 CityBite — Full-stack project (React website + ASP.NET Core API + SQL Server)
 
 Food discovery, restaurant ranking and **bill-verified reviews**.
@@ -228,3 +229,6 @@ Build the website for hosting: `cd frontend && npm run build` → upload the `di
 * The **real** .NET backend and SQL Server could not be started where this was assembled (no .NET SDK / SQL Server there), so please run the setup in section 3 once on your laptop and tell me about any screen that behaves differently from your real API.
 * The backend code was left **unchanged**.
 * OTP is shown on screen because SMS/e-mail can't be sent offline. Payments for promotions are not real — the backend only records the promotion.
+=======
+# citybite-food-discovery-platform
+>>>>>>> cafd0775d32ed046668b7e6f483389b7287df538
